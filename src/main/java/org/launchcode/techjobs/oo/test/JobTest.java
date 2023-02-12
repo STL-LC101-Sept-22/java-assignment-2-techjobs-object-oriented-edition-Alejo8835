@@ -29,7 +29,6 @@ public class JobTest {
 
     @Test
     public void testSettingJobId() {
-        String spec = "First constructor sets the job id and verifies that the IDs of the two objects are distinct";
         job1.getId();
         job3.getId();
         assertNotEquals(job1, job3);
@@ -37,20 +36,52 @@ public class JobTest {
 
     @Test
     public void testJobConstructorSetsAllFields() {
+        String spec = "The second constructor correctly assigns both the class and value of each field";
         assertTrue(job1 instanceof Job);
-        assertEquals("Product tester", job1.getName());
+        assertEquals(spec, "Product tester", job1.getName());
         assertTrue(job1.getEmployer() instanceof Employer);
-        assertEquals("ACME", job1.getEmployer().getValue());
+        assertEquals(spec, "ACME", job1.getEmployer().getValue());
         assertTrue(job1.getLocation() instanceof Location);
-        assertEquals("Desert", job1.getLocation().getValue());
+        assertEquals(spec,"Desert", job1.getLocation().getValue());
         assertTrue(job1.getPositionType() instanceof PositionType);
-        assertEquals("Quality control", job1.getPositionType().getValue());
+        assertEquals(spec, "Quality control", job1.getPositionType().getValue());
         assertTrue(job1.getCoreCompetency() instanceof CoreCompetency);
-        assertEquals("Persistence", job1.getCoreCompetency().getValue());
+        assertEquals(spec, "Persistence", job1.getCoreCompetency().getValue());
     }
 
     @Test
     public void testJobsForEquality() {
         assertFalse(job1.equals(job2));
     }
+
+    @Test
+    public void testToStringStartsAndEndsWithNewLine() {
+        char [] charactersInString = job1.toString().toCharArray();
+        assertEquals('\n', charactersInString[charactersInString.length-1]);
+        assertEquals('\n', charactersInString[0]);
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+        String correctFormat = "\nID: " + job1.getId() + "\n" +
+                "Name: " + job1.getName() + "\n" +
+                "Employer: " + job1.getEmployer() + "\n" +
+                "Location: " + job1.getLocation() + "\n" +
+                "Position Type: " + job1.getPositionType() + "\n" +
+                "Core Competency: " + job1.getCoreCompetency() + "\n";
+        assertEquals(job1.toString(), correctFormat);
+    }
+
+    @Test
+    public void testToStringHandlesEmptyField() {
+        String correctFormat = "\nID: " + job1.getId() + "\n" +
+                "Name: " + job1.getName() + "\n" +
+                "Employer: " + job1.getEmployer() + "\n" +
+                "Location: " + job1.getLocation() + "\n" +
+                "Position Type: " + job1.getPositionType() + "\n" +
+                "Core Competency: " + job1.getCoreCompetency() + "\n";
+        assertEquals(job1.toString(), correctFormat);
+    }
+
+
 }

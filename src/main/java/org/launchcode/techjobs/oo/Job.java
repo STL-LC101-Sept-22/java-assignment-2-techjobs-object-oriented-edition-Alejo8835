@@ -104,4 +104,32 @@ public class Job {
 
         this.coreCompetency = coreCompetency;
     }
+
+    @Override
+    public String toString() {
+        String emptyField = "Data not available";
+        if (name == null|| name == "") {
+            name = emptyField;
+        }
+        if(employer == null || employer.getValue() == "") {
+            employer.setValue(emptyField);
+        }
+        if(location == null || location.getValue() == "") {
+            location.setValue(emptyField);
+        }
+        if(positionType == null || positionType.getValue() == "") {
+            positionType.setValue(emptyField);
+        }
+        if(coreCompetency == null || coreCompetency.getValue() == "") {
+            coreCompetency.setValue(emptyField);
+        }
+        return "\n" + "ID: " + id + "\n" +
+                "Name: " + name + "\n" +
+                "Employer: " + employer + "\n" +
+                "Location: " + location + "\n" +
+                "Position Type: " + positionType + "\n" +
+                "Core Competency: " + coreCompetency + "\n";
+     }
+
+
 }
